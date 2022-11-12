@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  padding: 0;
+}
+.circle-container {
+  position: relative;
+  /* width: 24em;
+  height: 24em; */
+  height: 100vh;
+  padding: 2.8em;
+  /*2.8em = 2em*1.4 (2em = half the width of a link with img, 1.4 = sqrt(2))*/
+  border: dashed 1px;
+  border-radius: 50%;
+  margin: 1.75em auto 0;
+}
+/* .circle-container a {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4em;
+  height: 4em;
+  margin: -2em;
+}
+.circle-container img {
+  display: block;
+  width: 100%;
+} */
+/* .deg0 {
+  transform: translate(30em);
+}  */
+/* 12em = half the width of the wrapper */
+/* .deg45 {
+  transform: rotate(45deg) translate(30em) rotate(-45deg);
+}
+.deg135 {
+  transform: rotate(135deg) translate(30em) rotate(-135deg);
+}
+.deg180 {
+  transform: translate(-30em);
+}
+.deg225 {
+  transform: rotate(225deg) translate(30em) rotate(-225deg);
+}
+.deg315 {
+  transform: rotate(315deg) translate(30em) rotate(-315deg);
+}
+.two-deg0 {
+  transform: translate(50em);
+}  */
+/* 12em = half the width of the wrapper */
+/* .two-deg0 {
+  transform: rotate(45deg) translate(50em) rotate(-45deg);
+}
+.two-deg45 {
+  transform: rotate(3deg) translate(50em) rotate(-315deg);
+}
+.two-deg135 {
+  transform: rotate(155deg) translate(50em) rotate(-155deg);
+}
+.two-deg180 {
+  transform: rotate(200deg) translate(50em) rotate(-200deg);
+}
+.two-deg225 {
+  transform: rotate(225deg) translate(50em) rotate(-225deg);
+}
+.two-deg315 {
+  transform: rotate(315deg) translate(50em) rotate(-315deg);
+}
+.two-deg320 {
+  transform: rotate(315deg) translate(50em) rotate(-315deg);
+} */
+
+/* .blockIntro-small-circle-container {
+  display: flex;
+  gap: 10;
+  justify-content: space-between;
+} */
+/*.blockIntro-circle-container {
+   width: 100vw;
+  height: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+.blockIntro-small-circle-container {
+  top: -17.5%;
+  left: -17.5%;
+  width: 135%;
+  height: 135%;
+}
+.CircleWithImages_wrapper {
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+.CircleWithImages_product {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: 22.8vw;
+  height: 22.8vw;
+  -webkit-transform: rotate(var(--rotate));
+  transform: rotate(var(--rotate));
+}
+.NextImage_container {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .blockIntro-circle-container {
+    width: 62.66667vw;
+    height: 62.66667vw;
+    top: calc(((62.66667vw - 100vh) / 2) * -1);
+    -webkit-transform: unset;
+    transform: unset;
+  }
+} */
+.title {
+  position: absolute;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  align-content: center;
+  text-align: center;
+}
+
+.ciclegraph {
+  position: absolute;
+  width: 60%;
+  margin: calc(100px / 2 + 0px);
+  animation: rotate 200s linear infinite;
+  -webkit-animation: rotate 200s linear infinite;
+  -o-animation: rotate 200s linear infinite;
+}
+.ciclegraph .circle img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  margin: calc(-100px / 2);
+}
+.ciclegraph:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 2px * 2);
+  height: calc(100% - 2px * 2);
+  border-radius: 50%;
+}
+.ciclegraph-two {
+  position: relative;
+  width: 90%;
+  margin: calc(100px / 2 + 0px);
+  animation: rotate 170s linear infinite;
+  -webkit-animation: rotate 170s linear infinite;
+  -o-animation: rotate 170s linear infinite;
+}
+
+.ciclegraph-two:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border: 2px solid teal; */
+  width: calc(100% - 2px * 2);
+  height: calc(100% - 2px * 2);
+  border-radius: 50%;
+}
+
+.ciclegraph-two .circle img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  margin: calc(-100px / 2);
+  /* background: teal;
+  border-radius: 50%; */
+}
+/* .circle {
+  animation: rotate-opposite 40s linear infinite;
+}
+@keyframes rotate-opposite {
+  from {
+    transform: rotate(var(--start-angle-of-rotation));
+  }
+  to {
+    transform: rotate(var(--end-angle-of-rotation));
+  }
+} */
+/* @keyframes rotate-opposite {
+  from {
+    transform: translate(500px) rotate(var(--start-angle-of-rotation));
+  }
+  to {
+    transform: translate(-500px) rotate(var(--end-angle-of-rotation));
+  }
+} */
+
+/* @keyframes rotate {
+  100% {
+    transform: rotate(1turn) translateZ(0);
+  }
+} */
