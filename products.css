@@ -1,3 +1,6 @@
+* {
+  margin: 0;
+}
 .products {
   display: flex;
   justify-content: space-between;
@@ -14,8 +17,8 @@
 } */
 .main {
   display: none;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -23,26 +26,26 @@
   align-content: center;
   text-align: center;
 }
-.ciclegraph {
+/* .ciclegraph {
   position: absolute;
-  width: 60%;
-  /* height: 700px; */
+  width: 100%;
+  height: 700px;
   margin: calc(100px / 2 + 0px);
   animation: rotate 200s linear infinite;
   -webkit-animation: rotate 200s linear infinite;
   -o-animation: rotate 200s linear infinite;
   transition-delay: 1005s;
-}
-.ciclegraph-two {
+} */
+/* .ciclegraph-two {
   position: relative;
   width: 90%;
-  /* height: 1000px; */
+  height: 1000px;
   margin: calc(100px / 2 + 0px);
   animation: rotate 170s linear infinite;
   -webkit-animation: rotate 170s linear infinite;
   -o-animation: rotate 170s linear infinite;
   transition-delay: calc(1005s);
-}
+} */
 
 .ciclegraph:before {
   content: "";
@@ -54,16 +57,15 @@
   height: calc(100% - 2px * 2);
   border-radius: 50%;
 }
-.ciclegraph-two:before {
+/* .ciclegraph-two:before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  /* border: 2px solid teal; */
   width: calc(100% - 2px * 2);
   height: calc(100% - 2px * 2);
   border-radius: 50%;
-}
+} */
 
 .ciclegraph .circle img {
   position: absolute;
@@ -75,7 +77,16 @@
   /* background: teal;
   border-radius: 50%; */
 }
+/* .product img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  margin: calc(-100px / 2);
 
+} */
+/* 
 .ciclegraph-two .circle img {
   position: absolute;
   top: 50%;
@@ -83,6 +94,26 @@
   width: 250px;
   height: 250px;
   margin: calc(-100px / 2);
-  /* background: teal;
-  border-radius: 50%; */
+
+} */
+/* .circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+} */
+.circle-displayed {
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0s;
 }
