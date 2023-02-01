@@ -1,3 +1,5 @@
+gsap.registerPlugin(Flip);
+
 const width = window.innerWidth;
 const height = window.innerHeight;
 console.log(width, height);
@@ -5,10 +7,21 @@ fetch("./fakeData.json") //api for the get request
   .then((response) => response.json())
   .then((data) => displayProducts(data));
 
+const productState = document.querySelectorAll(".ciclegraph .circle");
+const state = Flip.getState(productState);
+
 const displayProductsByCircles = (data) => {
   document.querySelector(".main").style.display = "flex";
   var products = document.querySelectorAll(".ciclegraph .circle");
-  console.log(products);
+  document
+    .querySelector(".ciclegraph")
+    .classList.remove("ciclegraph-filter-inactive");
+  const images = document.querySelectorAll(".ciclegraph .circle img");
+  const state = Flip.getState(products);
+  images.forEach(function (image) {
+    image.classList.add("ciclegraph-filter-active");
+  });
+  Flip.from({ state, duration: 1, ease: "expo.out", absolute: true });
 
   var balls = [];
   const radius = Math.min(width, height) / 2;
@@ -50,21 +63,30 @@ const displayProductsByCircles = (data) => {
       b.y = height / 2 + Math.cos(radians(b.angle)) * (100 + b.size / 2);
     }
     if (b.no === 2) {
-      b.x = width / 2 + Math.cos(radians(b.angle)) * (600 + b.size / 2);
-      b.y = height / 2 + Math.sin(radians(b.angle)) * (600 + b.size / 2);
+      b.x = width / 2 + Math.cos(radians(b.angle)) * (500 + b.size / 2);
+      b.y = height / 2 + Math.sin(radians(b.angle)) * (500 + b.size / 2);
     }
     if (b.no === 3) {
-      b.x = width / 2 + Math.cos(radians(b.angle)) * (1200 + b.size / 2);
-      b.y = height / 2 + Math.sin(radians(b.angle)) * (1200 + b.size / 2);
+      b.x = width / 2 + Math.cos(radians(b.angle)) * (800 + b.size / 2);
+      b.y = height / 2 + Math.sin(radians(b.angle)) * (800 + b.size / 2);
     }
   }
 
   function displayCircleImg(ball, currentProductElement) {
-    currentProductElement.classList.add("circle-displayed");
+    // currentProductElement.classList.add("circle-displayed");
 
     console.log(ball, currentProductElement);
-    currentProductElement.style.transform = `translateX(${ball.x}px) translateY(${ball.y}px)`;
+    // currentProductElement.style.transform = `translateX(${ball.x}px) translateY(${ball.y}px)`;
     // currentProductElement.style.transition = `all 0.5s ease-in-out`;
+    TweenMax.set(currentProductElement, {
+      x: width / 2,
+      y: height / 2,
+    });
+    TweenMax.to(currentProductElement, 2, {
+      translateX: ball.x,
+      translateY: ball.y,
+      ease: Power2.easeInOut,
+    });
   }
 
   function distributeAngles(me, total) {
@@ -88,3 +110,5 @@ const displayProducts = (data) => {
     .getElementById("filter-btn")
     .addEventListener("click", () => displayProductsByCircles(data));
 };
+
+const element = document.querySelector(".element");

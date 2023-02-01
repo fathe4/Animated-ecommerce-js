@@ -16,7 +16,7 @@
   left: 50%;
 } */
 .main {
-  display: none;
+  /* display: flex; */
   /* align-items: center; */
   /* justify-content: center; */
   position: relative;
@@ -26,16 +26,12 @@
   align-content: center;
   text-align: center;
 }
-/* .ciclegraph {
-  position: absolute;
-  width: 100%;
-  height: 700px;
-  margin: calc(100px / 2 + 0px);
-  animation: rotate 200s linear infinite;
-  -webkit-animation: rotate 200s linear infinite;
-  -o-animation: rotate 200s linear infinite;
-  transition-delay: 1005s;
-} */
+.ciclegraph-filter-inactive {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
 /* .ciclegraph-two {
   position: relative;
   width: 90%;
@@ -47,16 +43,16 @@
   transition-delay: calc(1005s);
 } */
 
-.ciclegraph:before {
+/* .ciclegraph:before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  /* border: 2px solid teal; */
+  border: 2px solid teal;
   width: calc(100% - 2px * 2);
   height: calc(100% - 2px * 2);
   border-radius: 50%;
-}
+} */
 /* .ciclegraph-two:before {
   content: "";
   position: absolute;
@@ -67,7 +63,7 @@
   border-radius: 50%;
 } */
 
-.ciclegraph .circle img {
+.ciclegraph-filter-active {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -76,6 +72,14 @@
   margin: calc(-100px / 2);
   /* background: teal;
   border-radius: 50%; */
+}
+.ciclegraph .circle img {
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  width: 200px;
+  height: 200px;
+  /* margin: calc(-100px / 2); */
 }
 /* .product img {
   position: absolute;
@@ -112,8 +116,8 @@
     transform: translateY(0);
   }
 } */
-.circle-displayed {
+/* .circle-displayed {
   transition-duration: 0.8s;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition-delay: 0s;
-}
+} */
