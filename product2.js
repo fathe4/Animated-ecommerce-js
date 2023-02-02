@@ -2,101 +2,122 @@ gsap.registerPlugin(Flip);
 
 const width = window.innerWidth;
 const height = window.innerHeight;
-console.log(width, height);
 fetch("./fakeData.json") //api for the get request
   .then((response) => response.json())
   .then((data) => displayProducts(data));
 
-const productState = document.querySelectorAll(".ciclegraph .circle");
-const state = Flip.getState(productState);
-
-const displayProductsByCircles = (data) => {
-  document.querySelector(".main").style.display = "flex";
+const displayProductsByCircles = (state) => {
+  //   document.querySelector(".main").style.display = "flex";
   var products = document.querySelectorAll(".ciclegraph .circle");
-  document
-    .querySelector(".ciclegraph")
-    .classList.remove("ciclegraph-filter-inactive");
-  const images = document.querySelectorAll(".ciclegraph .circle img");
-  const state = Flip.getState(products);
-  images.forEach(function (image) {
-    image.classList.add("ciclegraph-filter-active");
-  });
-  Flip.from({ state, duration: 1, ease: "expo.out", absolute: true });
+
+  //   Flip.from({ state, duration: 1, ease: "expo.out", absolute: true });
 
   var balls = [];
-  const radius = Math.min(width, height) / 2;
-  let num = 0;
+  const radius1 = Math.min(width, height) / 8;
+  const radius2 = radius1 * 4;
+  const radius3 = radius1 * 6.5;
+  console.log(radius1, radius2, radius3, "radiux");
   for (var i = 0; i < products.length; i++) {
-    addBall(i);
+    addBall(i, products[i]);
   }
 
-  function addBall(_i) {
-    if (_i === 3 || _i === 12 || _i === 20) {
-      num = 0;
+  function addBall(_i, product) {
+    let totalBalls;
+    let ballNum;
+    if (_i <= 3 && _i > 0) {
+      totalBalls = 3;
+      ballNum = 1;
+    } else if (_i <= 12) {
+      totalBalls = 12 - 3;
+      ballNum = 2;
+    } else {
+      totalBalls = 20 - 13;
+      ballNum = 3;
     }
-    let totalBalls =
-      (_i <= 3 && 3) || (_i <= 12 && 12 - 3) || (_i >= 12 && 20 - 13);
-    var ball = {
-      no: (_i <= 3 && 1) || (_i <= 12 && 2) || (_i > 12 && 3),
+
+    let ball = {
+      no: ballNum,
       x: 0,
       y: 0,
-      speed: 00,
+      speed: 0,
       size: 80,
-      //   colour: "",
-      angle: distributeAngles(num, totalBalls),
+      angle: distributeAngles(_i, totalBalls),
     };
-    // balls.push(ball);
-    moveBall(ball);
-    num++;
-    displayCircleImg(ball, products[_i]);
 
-    console.log(ball, "ball");
+    moveBall(ball);
+    displayCircleImg(ball, product);
   }
 
   function moveBall(ball) {
-    var b = ball;
-    b.angle += b.speed;
-    const size = Math.min(width, height) / 4; // dynamic size based on screen size
+    var size = Math.min(width, height) / 4;
+    ball.angle += ball.speed;
 
-    if (b.no === 1) {
-      b.x = width / 2 + Math.cos(radians(b.angle)) * (100 + b.size / 2);
-      b.y = height / 2 + Math.cos(radians(b.angle)) * (100 + b.size / 2);
-    }
-    if (b.no === 2) {
-      b.x = width / 2 + Math.cos(radians(b.angle)) * (500 + b.size / 2);
-      b.y = height / 2 + Math.sin(radians(b.angle)) * (500 + b.size / 2);
-    }
-    if (b.no === 3) {
-      b.x = width / 2 + Math.cos(radians(b.angle)) * (800 + b.size / 2);
-      b.y = height / 2 + Math.sin(radians(b.angle)) * (800 + b.size / 2);
+    switch (ball.no) {
+      case 1:
+        ball.x =
+          width / 2 + Math.cos(radians(ball.angle)) * (radius1 + ball.size / 2);
+        ball.y =
+          height / 2 +
+          Math.sin(radians(ball.angle)) * (radius1 + ball.size / 2);
+        break;
+      case 2:
+        ball.x =
+          width / 2 + Math.cos(radians(ball.angle)) * (radius2 + ball.size / 2);
+        ball.y =
+          height / 2 +
+          Math.sin(radians(ball.angle)) * (radius2 + ball.size / 2);
+        break;
+      case 3:
+        ball.x =
+          width / 2 + Math.cos(radians(ball.angle)) * (radius3 + ball.size / 2);
+        ball.y =
+          height / 2 +
+          Math.sin(radians(ball.angle)) * (radius3 + ball.size / 2);
+        break;
     }
   }
 
   function displayCircleImg(ball, currentProductElement) {
     // currentProductElement.classList.add("circle-displayed");
 
-    console.log(ball, currentProductElement);
-    // currentProductElement.style.transform = `translateX(${ball.x}px) translateY(${ball.y}px)`;
+    currentProductElement.style.transform = `translateX(${ball.x}px) translateY(${ball.y}px)`;
     // currentProductElement.style.transition = `all 0.5s ease-in-out`;
-    TweenMax.set(currentProductElement, {
-      x: width / 2,
-      y: height / 2,
-    });
-    TweenMax.to(currentProductElement, 2, {
-      translateX: ball.x,
-      translateY: ball.y,
-      ease: Power2.easeInOut,
-    });
+
+    // TweenMax.set(currentProductElement, {
+    //   x: width / 2,
+    //   y: height / 2,
+    // });
+    // TweenMax.to(currentProductElement, 2, {
+    //   translateX: ball.x,
+    //   translateY: ball.y,
+    //   ease: Power2.easeInOut,
+    // });
   }
+  document
+    .querySelector(".ciclegraph")
+    .classList.remove("ciclegraph-filter-inactive");
+  const images = document.querySelectorAll(".ciclegraph .circle img");
+  //   const state = Flip.getState(products);
+  images.forEach(function (image) {
+    image.classList.add("ciclegraph-filter-active");
+  });
+  console.log(state);
 
   function distributeAngles(me, total) {
     console.log(me, total, "me, total");
     return (me / total) * 360;
   }
   function radians(deg) {
+    console.log(deg, "deg");
     return (deg * Math.PI) / 180;
   }
   console.log("clicked", products.length);
+  //   Flip.from(state, {
+  //     stagger: 0.1,
+  //     absolute: true,
+  //     duration: 5,
+  //     ease: "power1.inOut",
+  //   });
 };
 
 const displayProducts = (data) => {
@@ -106,9 +127,12 @@ const displayProducts = (data) => {
     productElm.innerHTML = `<img src=${product.picture} alt="" />`;
     document.querySelector(".ciclegraph").appendChild(productElm);
   });
+  const productState = gsap.utils.toArray("img");
+  const state = Flip.getState(productState);
+  console.log(state);
   document
     .getElementById("filter-btn")
-    .addEventListener("click", () => displayProductsByCircles(data));
+    .addEventListener("click", () => displayProductsByCircles(state));
 };
 
 const element = document.querySelector(".element");
